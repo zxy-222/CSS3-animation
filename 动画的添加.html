@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>动画的添加</title>
+  <style>
+    * {
+      margin:0;
+      padding: 0;
+    }
+    div {
+      width: 100px;
+      height: 100px;
+      margin-left: 15px;
+      margin-top: 10px;
+      background-color: mediumspringgreen;
+      /*添加动画效果*/
+      /*1、animation-name：指定动画名称*/
+      animation-name:moveTest;
+      /*2、设置动画的总耗时*/
+      animation-duration: 2s;
+     /* 3、设置动画的播放次数,默认1次*/
+      animation-iteration-count:1;
+     /* 4、设置交替动画 alternate：来回交替*/
+      animation-direction: alternate;
+     /* 5、设置动画的延迟*/
+      animation-delay:2s;
+      /*6、设置动画结束时的状态:默认情况下，动画执行完毕后，会回到动画的原始状态
+        a、forwards:会保留动画结束时的状态,在有延迟的情况下不会立刻进行到动画的初始状态
+        b、backwards:不会保留动画结束时的状态,在添加了动画延迟的情况下,如果动画有初始状态,会立刻进行到初始状态
+        c、both:会保留动画的结束时状态,在有延迟的情况下，也会立刻进入到动画的初始状态*/
+      animation-fill-mode:both;
+     /* 7、动画的时间函数*/
+       animation-timing-function:linear;
+      /* 设置动画的播放状态 paused：暂停  running：播放
+       animation-play-state:running;  */
+    }
+    /*创建动画*/
+    @keyframes moveTest {
+      /*百分比是指整个动画耗时的百分比*/
+      from {
+        transform:translate(0,0) ratate(45deg);
+      }
+      50% {
+        transform: translate(0,500px)
+      }
+      to {
+        transform: translate(500px,600px)
+      }
+    }
+  </style>
+</head>
+<body>
+  <input type="button" value="播放" id="play" style="margin-left:15px;">
+  <input type="button" value="暂停" id="stop" style="margin-left:5px;">
+  <div></div>
+</body>
+<script>
+  var div = document.querySelector("div");
+  document.querySelector("#play").onclick = function(){
+    div.style.animationPlayState = "running"
+  }
+  document.querySelector("#stop").onclick = function(){
+    div.style.animationPlayState = "paused"
+  }
+</script>
+</html>
